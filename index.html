@@ -3,189 +3,175 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Python Dictionary Comprehension Quiz</title>
+<title>Python Dictionary Comprehension Pro Quiz</title>
 <style>
-*{box-sizing:border-box}
-body{
-  margin:0; min-height:100vh; font-family:Inter,Segoe UI,Arial,sans-serif;
-  background:linear-gradient(135deg,#0f172a,#1e1b4b,#312e81);
-  color:#fff; display:flex; align-items:center; justify-content:center; padding:24px;
-}
-.container{width:min(760px,100%)}
-header{text-align:center;margin-bottom:22px}
-.logo{font-size:48px}
-h1{margin:5px 0;font-size:clamp(28px,5vw,42px)}
-.subtitle{color:#cbd5e1;margin:8px 0}
-.card{
-  background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.18);
-  backdrop-filter:blur(14px); border-radius:24px; padding:28px;
-  box-shadow:0 20px 60px rgba(0,0,0,.3)
-}
-.top{display:flex;justify-content:space-between;gap:15px;color:#cbd5e1;font-weight:600}
-.progress{height:9px;background:rgba(255,255,255,.15);border-radius:99px;margin:16px 0 28px;overflow:hidden}
-.progress-bar{height:100%;width:0%;background:#a78bfa;transition:.35s}
-.question{font-size:21px;line-height:1.5;margin-bottom:20px;white-space:pre-line}
-.options{display:grid;gap:12px}
-.option{
-  width:100%; padding:16px 18px; border-radius:14px;
-  border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.08);
-  color:white;text-align:left;font-size:16px;cursor:pointer;transition:.2s
-}
-.option:hover{background:rgba(255,255,255,.16);transform:translateY(-1px)}
-.option.correct{background:rgba(34,197,94,.25);border-color:#4ade80}
-.option.wrong{background:rgba(239,68,68,.25);border-color:#f87171}
-.option:disabled{cursor:default}
-.feedback{min-height:28px;margin:18px 0;font-weight:700}
-button.next,.restart{
-  border:0;border-radius:13px;padding:13px 22px;background:#8b5cf6;color:white;
-  font-size:16px;font-weight:700;cursor:pointer
-}
-.next{display:none;margin-left:auto}
-.result{text-align:center}
-.score{font-size:56px;font-weight:800;margin:12px}
-.badge{font-size:22px;margin-bottom:22px}
-.small{color:#cbd5e1}
-.hidden{display:none}
-.review{text-align:left;margin-top:25px}
-.review-item{padding:13px;border-radius:12px;background:rgba(255,255,255,.07);margin:9px 0}
-footer{text-align:center;color:#94a3b8;font-size:13px;margin-top:18px}
-@media(max-width:520px){.card{padding:20px}.question{font-size:18px}}
+:root{--bg:#07111f;--card:#0d1b2e;--card2:#12243a;--text:#f8fafc;--muted:#9fb0c5;--accent:#7c5cff;--good:#22c55e;--bad:#ef4444;--gold:#f59e0b}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:radial-gradient(circle at top,#172554,#07111f 55%);color:var(--text);min-height:100vh}
+button,input,select{font:inherit}.hidden{display:none!important}.wrap{width:min(980px,94%);margin:auto;padding:28px 0 50px}
+header{text-align:center;margin-bottom:20px}.brand{font-size:48px}.tag{display:inline-block;background:#ffffff12;border:1px solid #ffffff18;padding:6px 12px;border-radius:99px;color:#c4b5fd;font-weight:700}
+h1{font-size:clamp(30px,5vw,48px);margin:8px 0}.sub{color:var(--muted)}
+.card{background:linear-gradient(145deg,#0d1b2eec,#0b1728ee);border:1px solid #ffffff16;border-radius:24px;padding:28px;box-shadow:0 25px 80px #0006;margin:16px 0}
+.start-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.level{padding:20px;border:1px solid #ffffff18;background:#ffffff08;border-radius:18px;cursor:pointer}.level:hover,.level.active{border-color:var(--accent);background:#7c5cff16}.level h3{margin:0 0 6px}.level p{color:var(--muted);margin:0}
+.btn{border:0;border-radius:13px;padding:13px 20px;background:var(--accent);color:#fff;font-weight:800;cursor:pointer}.btn.secondary{background:#ffffff10;border:1px solid #ffffff18}.btn:disabled{opacity:.5;cursor:not-allowed}
+.name-row{display:flex;gap:10px;margin-top:18px}.name-row input{flex:1;padding:14px;border-radius:12px;border:1px solid #ffffff20;background:#ffffff0a;color:#fff;outline:none}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--muted);font-weight:700}.timer{color:#fff;background:#ffffff0d;padding:9px 14px;border-radius:12px}.timer.warn{color:#fecaca;background:#7f1d1d}
+.progress{height:8px;background:#ffffff12;border-radius:99px;overflow:hidden;margin:18px 0}.bar{height:100%;background:linear-gradient(90deg,#7c5cff,#a78bfa);width:0;transition:.3s}
+.question{font-size:21px;line-height:1.55;white-space:pre-line;margin:24px 0}.options{display:grid;gap:12px}.option{text-align:left;border:1px solid #ffffff18;background:#ffffff08;color:#fff;padding:16px;border-radius:14px;cursor:pointer;transition:.18s}.option:hover{transform:translateY(-1px);background:#ffffff12}.option.correct{border-color:#4ade80;background:#14532d}.option.wrong{border-color:#f87171;background:#7f1d1d}.option:disabled{cursor:default}
+.feedback{min-height:28px;margin:16px 0;font-weight:700}.actions{display:flex;justify-content:space-between;align-items:center;gap:10px}.pill{color:#cbd5e1;background:#ffffff0b;padding:8px 12px;border-radius:99px;font-size:13px}
+.result{text-align:center}.bigscore{font-size:68px;font-weight:900}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}.stat{background:#ffffff08;border-radius:15px;padding:16px}.stat b{font-size:25px;display:block}.stat span{color:var(--muted);font-size:13px}
+table{width:100%;border-collapse:collapse;text-align:left;margin-top:12px}th,td{padding:12px;border-bottom:1px solid #ffffff10}th{color:#c4b5fd}
+.certificate{background:#fff;color:#111827;padding:42px;border:10px double #7c5cff;border-radius:8px;text-align:center;margin-top:20px}.certificate h2{font-size:40px;margin:8px}.certificate .cert-name{font-size:32px;font-weight:900}.certificate .cert-score{font-size:24px}.certificate small{color:#475569}
+footer{text-align:center;color:#64748b;font-size:12px;margin-top:20px}
+@media(max-width:650px){.start-grid,.statgrid{grid-template-columns:1fr}.name-row{flex-direction:column}.card{padding:20px}.question{font-size:18px}}
+@media print{body{background:#fff}.wrap>header,.no-print,.card:not(#certificateCard){display:none!important}.certificate{display:block!important;margin:0;box-shadow:none;min-height:90vh}}
 </style>
 </head>
 <body>
-<div class="container">
-<header>
-  <div class="logo">🐍</div>
-  <h1>Python Dictionary Comprehension Quiz</h1>
-  <p class="subtitle">Test your Python skills with 10 interactive questions.</p>
-</header>
+<div class="wrap">
+<header><div class="brand">🐍</div><span class="tag">PRO EDITION</span><h1>Python Dictionary Comprehension Quiz</h1><p class="sub">50 questions • timed challenge • leaderboard • certificate</p></header>
 
-<div class="card" id="quizCard">
-  <div class="top">
-    <span id="questionNumber">Question 1 of 10</span>
-    <span id="score">Score: 0</span>
+<section class="card" id="setup">
+  <h2>Choose your challenge</h2>
+  <div class="start-grid">
+    <div class="level active" data-level="mixed"><h3>🎯 Mixed Challenge</h3><p>All levels • 50 questions • 15 min</p></div>
+    <div class="level" data-level="easy"><h3>🟢 Beginner</h3><p>Foundations and simple outputs • 15 min</p></div>
+    <div class="level" data-level="medium"><h3>🟡 Intermediate</h3><p>Conditions, nesting and transformations • 12 min</p></div>
+    <div class="level" data-level="hard"><h3>🔴 Advanced</h3><p>Tricky outputs and practical patterns • 10 min</p></div>
   </div>
-  <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
-  <div class="question" id="question"></div>
-  <div class="options" id="options"></div>
-  <div class="feedback" id="feedback"></div>
-  <button class="next" id="nextBtn">Next Question →</button>
-</div>
+  <div class="name-row"><input id="playerName" maxlength="30" placeholder="Enter your name for the leaderboard & certificate"><button class="btn" id="startBtn">Start Quiz 🚀</button></div>
+  <p class="sub">Your leaderboard is stored locally in this browser. No account or server is required.</p>
+</section>
 
-<div class="card result hidden" id="resultCard">
-  <div style="font-size:58px">🏆</div>
-  <h2>Quiz Completed!</h2>
-  <div class="score" id="finalScore">0/10</div>
-  <div class="badge" id="finalMessage"></div>
-  <p class="small" id="percentage"></p>
-  <div class="review" id="review"></div>
-  <br>
-  <button class="restart" onclick="restartQuiz()">🔄 Try Again</button>
-</div>
-<footer>Practice Python • Learn by doing</footer>
+<section class="card hidden" id="quiz">
+  <div class="top"><span id="counter">Question 1 of 50</span><span class="pill" id="levelPill">Mixed</span><span class="timer" id="timer">15:00</span></div>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+  <div class="question" id="question"></div><div class="options" id="options"></div>
+  <div class="feedback" id="feedback"></div>
+  <div class="actions"><span class="pill" id="liveScore">Score: 0</span><button class="btn" id="nextBtn" style="display:none">Next →</button></div>
+</section>
+
+<section class="card result hidden" id="result">
+  <div style="font-size:58px">🏆</div><h2>Challenge Complete!</h2><div class="bigscore" id="finalScore">0/50</div>
+  <div class="statgrid"><div class="stat"><b id="pct">0%</b><span>Accuracy</span></div><div class="stat"><b id="correctCount">0</b><span>Correct</span></div><div class="stat"><b id="timeUsed">0:00</b><span>Time Used</span></div></div>
+  <p id="message"></p>
+  <div class="actions no-print"><button class="btn" id="certBtn">🎓 Generate Certificate</button><button class="btn secondary" id="restartBtn">🔄 Play Again</button></div>
+</section>
+
+<section class="card hidden no-print" id="leaderboard"><h2>🏅 Local Leaderboard</h2><p class="sub">Top 10 scores saved on this device.</p><table><thead><tr><th>#</th><th>Name</th><th>Score</th><th>Accuracy</th><th>Level</th><th>Date</th></tr></thead><tbody id="boardBody"></tbody></table><br><button class="btn secondary" id="clearBoard">Clear Leaderboard</button></section>
+
+<section class="card hidden" id="certificateCard">
+  <div class="certificate" id="certificate">
+    <div style="font-size:55px">🐍</div><div style="letter-spacing:4px;color:#6d28d9;font-weight:800">CERTIFICATE OF ACHIEVEMENT</div>
+    <h2>Python Dictionary Comprehension</h2><p>This certificate is proudly presented to</p>
+    <div class="cert-name" id="certName"></div>
+    <p>for successfully completing the Python Dictionary Comprehension Pro Quiz.</p>
+    <div class="cert-score" id="certScore"></div><p id="certLevel"></p><small id="certDate"></small>
+  </div>
+  <div class="actions no-print" style="margin-top:15px"><button class="btn" onclick="window.print()">🖨️ Print / Save as PDF</button><button class="btn secondary" id="backResult">Back to Results</button></div>
+</section>
+<footer>Python Dictionary Comprehension Pro • Built with HTML, CSS & JavaScript</footer>
 </div>
 
 <script>
-const questions = [
- {q:"Which symbol is used to create a dictionary comprehension?",
-  o:["A. []","B. {}","C. ()","D. <>"],a:1,e:"Dictionary comprehensions use curly braces: {}."},
- {q:"What is the output of: {x: x*x for x in range(1, 4)}?",
-  o:["A. {1: 1, 2: 4, 3: 9}","B. {1, 2, 4, 3, 9}","C. {1: 2, 2: 4, 3: 6}","D. {0: 0, 1: 1, 2: 4}"],a:0,e:"Each number becomes a key and its square becomes the value."},
- {q:"Which of the following is a valid dictionary comprehension?",
-  o:["A. [x: x*x for x in range(5)]","B. {x: x*x for x in range(5)}","C. (x: x*x for x in range(5))","D. <x: x*x for x in range(5)>"],a:1,e:"The general form is {key: value for item in iterable}."},
- {q:"What is the output of: {x: x+10 for x in range(3)}?",
-  o:["A. {0: 10, 1: 11, 2: 12}","B. {10: 0, 11: 1, 12: 2}","C. {0, 1, 2, 10}","D. {10, 11, 12}"],a:0,e:"range(3) gives 0, 1, 2 and each value gets 10 added."},
- {q:"How do you add a condition to a dictionary comprehension?",
-  o:["A. {x: x*x if x > 2}","B. {x: x*x for x in range(10) if x > 2}","C. {x: x*x where x > 2}","D. {x: x*x when x > 2}"],a:1,e:"The filtering if condition comes after the iterable."},
- {q:"What is the output of: {x: x**2 for x in range(5) if x % 2 == 0}?",
-  o:["A. {1: 1, 3: 9}","B. {0: 0, 2: 4, 4: 16}","C. {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}","D. {2: 4, 4: 16}"],a:1,e:"The condition keeps only even numbers, including 0."},
- {q:"What does {x: len(x) for x in ['cat', 'dog']} create?",
-  o:["A. {'cat': 3, 'dog': 3}","B. {3: 'cat', 3: 'dog'}","C. ['cat': 3, 'dog': 3]","D. {'cat', 'dog'}"],a:0,e:"Each word is a key and len(x) is its value."},
- {q:"Which keyword is required in a dictionary comprehension?",
-  o:["A. for","B. loop","C. repeat","D. iterate"],a:0,e:"The for keyword iterates over the source iterable."},
- {q:"What is the output of: {x: x*2 for x in range(1, 4)}?",
-  o:["A. {1: 2, 2: 4, 3: 6}","B. {2: 1, 4: 2, 6: 3}","C. {1, 2, 3, 4, 6}","D. {2, 4, 6}"],a:0,e:"Keys are 1, 2, 3 and values are doubled."},
- {q:"What is a main advantage of dictionary comprehensions?",
-  o:["A. They can make dictionary-building code shorter and readable","B. They remove dictionaries","C. They make Python slower","D. They can only store numbers"],a:0,e:"They provide a concise way to construct dictionaries from iterables."}
+const questions=[
+{l:"easy",q:"Which brackets are used for a dictionary comprehension?",o:["[]","{}","()","<>"],a:1,e:"Dictionary comprehensions use curly braces."},
+{l:"easy",q:"What is the general form of a dictionary comprehension?",o:["{key: value for item in iterable}","[key: value for item in iterable]","(key, value for item)","{key, value if condition}"],a:0,e:"The standard syntax is {key: value for item in iterable}."},
+{l:"easy",q:"What is the output of {x: x*x for x in range(3)}?",o:["{0:0,1:1,2:4}","{1:1,2:4,3:9}","{0,1,4}","{0:1,1:2,2:3}"],a:0,e:"range(3) produces 0, 1 and 2."},
+{l:"easy",q:"Which keyword is used to iterate in a comprehension?",o:["loop","for","each","iterate"],a:1,e:"The for keyword performs the iteration."},
+{l:"easy",q:"What is the type of {x:x for x in range(3)}?",o:["list","tuple","set","dict"],a:3,e:"key:value pairs create a dictionary."},
+{l:"easy",q:"What is {x:x+10 for x in range(3)}?",o:["{0:10,1:11,2:12}","{10:0,11:1,12:2}","{10,11,12}","{0,1,2,10}"],a:0,e:"Each value is x + 10."},
+{l:"easy",q:"Which expression creates squares with numbers as keys?",o:["{x:x*x for x in range(1,6)}","[x:x*x for x in range(1,6)]","{x*x for x in range(1,6)}","(x:x*x)"],a:0,e:"This creates {1:1, 2:4, ...}."},
+{l:"easy",q:"How do you access a value in a dictionary?",o:["d(key)","d.key","d[key]","d->key"],a:2,e:"Square brackets access dictionary values by key."},
+{l:"easy",q:"What does range(1,4) produce?",o:["1,2,3","1,2,3,4","0,1,2,3","2,3,4"],a:0,e:"The stop value 4 is excluded."},
+{l:"easy",q:"Which is a valid comprehension?",o:["{x: x+1 for x in [1,2,3]}","{x: x+1 loop x in [1,2,3]}","{x -> x+1 for x in [1,2,3]}","dict[x:x+1 for x]"],a:0,e:"It follows the key:value for item in iterable pattern."},
+{l:"easy",q:"What does len(x) return for 'Python'?",o:["5","6","7","8"],a:1,e:"Python has 6 characters."},
+{l:"easy",q:"What is {'a':1,'b':2}['b']?",o:["a","1","2","b"],a:2,e:"The value stored under key b is 2."},
+{l:"easy",q:"What does {x:len(x) for x in ['cat','dog']} return?",o:["{'cat':3,'dog':3}","{3:'cat',3:'dog'}","['cat':3,'dog':3]","{'cat','dog'}"],a:0,e:"Words are keys and their lengths are values."},
+{l:"easy",q:"Can dictionary comprehensions include an if condition?",o:["Yes","No","Only in Python 2","Only with lists"],a:0,e:"A trailing if can filter items."},
+{l:"easy",q:"What is the result of {x:x*2 for x in range(1,4)}?",o:["{1:2,2:4,3:6}","{2:1,4:2,6:3}","{2,4,6}","{1,2,3}"],a:0,e:"Keys stay x; values become x*2."},
+{l:"medium",q:"What does {x:x*x for x in range(6) if x%2==0} produce?",o:["{0:0,2:4,4:16}","{1:1,3:9,5:25}","{2:4,4:16,6:36}","{0:0,1:1,2:4,3:9,4:16,5:25}"],a:0,e:"Only even x values are retained."},
+{l:"medium",q:"Which condition keeps only values greater than 5?",o:["{x:x for x in data if x>5}","{x:x if x>5 for x in data}","{x:x where x>5 for x in data}","{x:x for x>5 in data}"],a:0,e:"The filter follows the iterable."},
+{l:"medium",q:"What is {x:x**2 for x in range(1,5) if x>2}?",o:["{1:1,2:4,3:9,4:16}","{3:9,4:16}","{2:4,3:9,4:16}","{3:6,4:8}"],a:1,e:"Only 3 and 4 pass x>2."},
+{l:"medium",q:"How can you invert a dictionary d?",o:["{v:k for k,v in d.items()}","{k:v for v,k in d}","{d:v for v in k}","invert(d)"],a:0,e:"Iterating over items gives key,value pairs."},
+{l:"medium",q:"What does .items() return when iterating a dict?",o:["Keys only","Values only","Key-value pairs","A sorted list"],a:2,e:"items() provides (key, value) pairs."},
+{l:"medium",q:"What is {k:v*2 for k,v in {'a':1,'b':2}.items()}?",o:["{'a':1,'b':2}","{'a':2,'b':4}","{1:'a',2:'b'}","{'a':3,'b':4}"],a:1,e:"Each value is doubled."},
+{l:"medium",q:"Which expression filters dictionary items whose value is even?",o:["{k:v for k,v in d.items() if v%2==0}","{k:v if v%2==0 for k,v in d}","{k:v for k,v if v%2==0 in d}","filter{v%2==0}"],a:0,e:"The condition filters pairs based on v."},
+{l:"medium",q:"What happens if two generated keys are identical?",o:["Python raises an error","The first value always wins","The later value overwrites the earlier value","Both are stored"],a:2,e:"Dictionary keys are unique; later assignments replace earlier ones."},
+{l:"medium",q:"What is {x:x%3 for x in range(5)}?",o:["{0:0,1:1,2:2,3:0,4:1}","{0:3,1:3,2:3,3:3,4:3}","{3:0,4:1}","{0:0,1:1,2:2}"],a:0,e:"Modulo 3 cycles through 0,1,2."},
+{l:"medium",q:"Which creates a dictionary from a list of words and their uppercase versions?",o:["{w:w.upper() for w in words}","[w:w.upper() for w in words]","{w.upper() for w in words}","dict(w.upper() for w)"],a:0,e:"Each word is used as a key."},
+{l:"medium",q:"What is {c:ord(c) for c in 'ABC'}?",o:["{'A':65,'B':66,'C':67}","{65:'A',66:'B',67:'C'}","{'ABC':65}","{'A':1,'B':2,'C':3}"],a:0,e:"ord returns each character's Unicode code point."},
+{l:"medium",q:"Which is a nested dictionary comprehension?",o:["{i:{j:i*j for j in range(3)} for i in range(3)}","{{i:j} for i in range(3)}","{i:j for i,j}","nested({i:j})"],a:0,e:"The inner comprehension builds each nested dictionary."},
+{l:"medium",q:"What does {x: x for x in range(5) if x != 2} omit?",o:["0","1","2","5"],a:2,e:"The condition excludes x equal to 2."},
+{l:"medium",q:"What is {x: 'even' if x%2==0 else 'odd' for x in range(3)}?",o:["{0:'even',1:'odd',2:'even'}","{0:'odd',1:'even',2:'odd'}","{even:0,odd:1}","SyntaxError"],a:0,e:"This uses a conditional expression as the value."},
+{l:"medium",q:"Which method is commonly used to safely get a dictionary value with a default?",o:["fetch()","get()","value()","read()"],a:1,e:"d.get(key, default) returns a fallback when the key is absent."},
+{l:"medium",q:"What is {k:v for k,v in d.items() if k.startswith('a')} used for?",o:["Filtering keys","Sorting values","Deleting d","Reversing d"],a:0,e:"The condition filters pairs by key."},
+{l:"medium",q:"Can a dictionary comprehension iterate over a string?",o:["Yes","No","Only uppercase strings","Only one-character strings"],a:0,e:"Strings are iterable."},
+{l:"hard",q:"What is {x:x for x in [1,1,2,2,3]}?",o:["{1:1,2:2,3:3}","{1:1,1:1,2:2,2:2,3:3}","{1,2,3}","Error"],a:0,e:"Repeated keys collapse to one entry each."},
+{l:"hard",q:"What is {x: x+1 for x in range(3) if x and x%2==0}?",o:["{0:1,2:3}","{2:3}","{1:2}","{}"],a:1,e:"x must be truthy and even; only x=2 qualifies."},
+{l:"hard",q:"What is {x:y for x in range(3) for y in range(2)}?",o:["{0:0,1:1,2:0}","{0:1,1:1,2:1}","{0:0,1:0,2:0}","{0:1,1:0,2:1}"],a:1,e:"Each x is paired with y=0 then y=1; the later y=1 overwrites y=0 for each key."},
+{l:"hard",q:"What does {k:v for k,v in zip(['a','b'],[10,20])} return?",o:["{'a':10,'b':20}","{10:'a',20:'b'}","{'a':'b',10:20}","[('a',10),('b',20)]"],a:0,e:"zip pairs corresponding elements."},
+{l:"hard",q:"What is {x: x*x for x in range(-2,3) if x<0}?",o:["{-2:4,-1:1}","{2:4,1:1}","{-2:-4,-1:-1}","{-2:4,-1:1,0:0}"],a:0,e:"Only negative values -2 and -1 pass."},
+{l:"hard",q:"What is {x:len(str(x)) for x in [10,100,1000]}?",o:["{10:2,100:3,1000:4}","{2:10,3:100,4:1000}","{10:10,100:100,1000:1000}","{10:1,100:2,1000:3}"],a:0,e:"String lengths are 2, 3 and 4."},
+{l:"hard",q:"Which expression keeps the last occurrence of each key from pairs?",o:["{k:v for k,v in pairs}","{v:k for k,v in pairs}","{k for k,v in pairs}","dict.keys(pairs)"],a:0,e:"Later duplicate keys overwrite earlier values."},
+{l:"hard",q:"What is {i:{j:j**2 for j in range(i)} for i in range(3)}?",o:["{0:{},1:{0:0},2:{0:0,1:1}}","{0:{0:0},1:{1:1},2:{2:4}}","{1:{0:0},2:{0:0,1:1}}","{}"],a:0,e:"The inner range depends on the outer i."},
+{l:"hard",q:"What is {x: x**2 for x in range(5) if x**2 > 5}?",o:["{0:0,1:1,2:4,3:9,4:16}","{3:9,4:16}","{2:4,3:9,4:16}","{5:25}"],a:1,e:"Only squares greater than 5 qualify: 9 and 16."},
+{l:"hard",q:"Which comprehension groups words by their first letter?",o:["{w[0]:w for w in words}","{w[0]:[x for x in words if x[0]==w[0]] for w in words}","{first(words):words}","group{w by w[0]}"],a:1,e:"The inner comprehension collects all words sharing the current first letter."},
+{l:"hard",q:"What is the value for key 'a' in {k:sum(v) for k,v in {'a':[1,2],'b':[3]}.items()}?",o:["[1,2]","2","3","1"],a:2,e:"sum([1,2]) is 3."},
+{l:"hard",q:"What does {x: x if x%2 else x//2 for x in range(4)} map 2 to?",o:["1","2","4","0"],a:0,e:"2 is even, so the value is 2//2 = 1."},
+{l:"hard",q:"Which statement about dictionary comprehension keys is true?",o:["Keys must be unique in the final dictionary","Keys can never be strings","Keys must be integers","Duplicate keys create a list"],a:0,e:"A dictionary stores one final value per key."},
+{l:"hard",q:"What is {x: x**3 for x in range(1,4) if x != 2}?",o:["{1:1,3:27}","{1:1,2:8,3:27}","{2:8}","{1:3,3:9}"],a:0,e:"x=2 is filtered out."},
+{l:"hard",q:"What does {k:v for k,v in d.items() if isinstance(v,int)} do?",o:["Keeps integer values","Keeps integer keys only","Converts all values to int","Removes integers"],a:0,e:"isinstance checks the type of each value."},
+{l:"hard",q:"Which is best for making a dictionary of squares only for odd numbers from 1 to 9?",o:["{x:x*x for x in range(1,10) if x%2}","{x*x for x in range(1,10) if x%2}","[x:x*x for x in range(1,10) if x%2}","{x:x*x if x%2 for x in range(1,10)}"],a:0,e:"A nonzero modulo result is truthy for odd x."},
+{l:"hard",q:"What is {x:chr(65+x) for x in range(3)}?",o:["{0:'A',1:'B',2:'C'}","{'A':0,'B':1,'C':2}","{0:65,1:66,2:67}","{'A':'B','B':'C'}"],a:0,e:"chr(65), chr(66), chr(67) are A, B, C."},
+{l:"hard",q:"What does {k:v for k,v in [('a',1),('a',2)]} contain for 'a'?",o:["1","2","[1,2]","Error"],a:1,e:"The second pair overwrites the first value."},
+{l:"hard",q:"Which is equivalent to {x:x*x for x in nums}?",o:["dict((x,x*x) for x in nums)","list((x,x*x) for x in nums)","set(x*x for x in nums)","tuple(x,x*x for x in nums)"],a:0,e:"dict() can consume an iterable of key-value pairs."},
+{l:"hard",q:"What is {x: x%2 for x in range(1,5)}?",o:["{1:1,2:0,3:1,4:0}","{1:0,2:1,3:0,4:1}","{0:1,1:2,2:3,3:4}","{1:2,2:4,3:6,4:8}"],a:0,e:"Modulo 2 is 1 for odd numbers and 0 for even numbers."},
+{l:"hard",q:"What is the safest interpretation of a comprehension with a side-effecting function?",o:["It may be harder to read; prefer clear code","It always runs twice","It cannot call functions","It is always faster"],a:0,e:"Comprehensions are best kept readable; side effects can reduce clarity."}
 ];
 
-let current=0, score=0, answered=false, userAnswers=[];
-
-const qEl=document.getElementById("question");
-const oEl=document.getElementById("options");
-const fEl=document.getElementById("feedback");
-const next=document.getElementById("nextBtn");
-
-function loadQuestion(){
-  answered=false;
-  const q=questions[current];
-  document.getElementById("questionNumber").textContent=`Question ${current+1} of ${questions.length}`;
-  document.getElementById("score").textContent=`Score: ${score}`;
-  document.getElementById("progressBar").style.width=`${(current/questions.length)*100}%`;
-  qEl.textContent=q.q;
-  oEl.innerHTML="";
-  fEl.textContent="";
-  next.style.display="none";
-  q.o.forEach((text,i)=>{
-    const btn=document.createElement("button");
-    btn.className="option";
-    btn.textContent=text;
-    btn.onclick=()=>selectAnswer(i,btn);
-    oEl.appendChild(btn);
-  });
+let level="mixed", pool=[], current=0, score=0, answered=false, startTime=0, timerSeconds=900, timerId=null, player="";
+const $=id=>document.getElementById(id);
+document.querySelectorAll(".level").forEach(x=>x.onclick=()=>{document.querySelectorAll(".level").forEach(y=>y.classList.remove("active"));x.classList.add("active");level=x.dataset.level});
+$("startBtn").onclick=()=>{player=$("playerName").value.trim()||"Anonymous";startGame()};
+function startGame(){
+  const levels=level==="mixed"?["easy","medium","hard"]:[level];
+  const by=questions.filter(q=>levels.includes(q.l));
+  pool=level==="mixed"?shuffle([...questions]).slice(0,50):shuffle(by).slice(0,50);
+  current=score=0; startTime=Date.now();
+  timerSeconds=level==="easy"?900:level==="medium"?720:level==="hard"?600:900;
+  $("setup").classList.add("hidden");$("result").classList.add("hidden");$("leaderboard").classList.add("hidden");$("certificateCard").classList.add("hidden");$("quiz").classList.remove("hidden");
+  clearInterval(timerId);timerId=setInterval(tick,1000);load();
 }
-function selectAnswer(index,clicked){
-  if(answered)return;
-  answered=true;
-  userAnswers[current]=index;
-  const q=questions[current];
-  document.querySelectorAll(".option").forEach((btn,i)=>{
-    btn.disabled=true;
-    if(i===q.a)btn.classList.add("correct");
-  });
-  if(index===q.a){
-    score++;
-    fEl.textContent="✅ Correct! "+q.e;
-  }else{
-    clicked.classList.add("wrong");
-    fEl.textContent="❌ Incorrect. "+q.e;
-  }
-  document.getElementById("score").textContent=`Score: ${score}`;
-  next.style.display="block";
-  if(current===questions.length-1)next.textContent="See Results →";
+function tick(){timerSeconds--;renderTimer();if(timerSeconds<=0){clearInterval(timerId);finish(true)}}
+function renderTimer(){let m=Math.floor(timerSeconds/60),s=timerSeconds%60;$("timer").textContent=`${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;$("timer").classList.toggle("warn",timerSeconds<=60)}
+function load(){
+  answered=false;const q=pool[current];$("counter").textContent=`Question ${current+1} of ${pool.length}`;$("levelPill").textContent=level==="mixed"?"Mixed":level[0].toUpperCase()+level.slice(1);$("bar").style.width=`${current/pool.length*100}%`;$("question").textContent=q.q;$("feedback").textContent="";$("liveScore").textContent=`Score: ${score}`;$("nextBtn").style.display="none";$("nextBtn").textContent=current===pool.length-1?"Finish →":"Next →";$("options").innerHTML="";
+  q.o.forEach((txt,i)=>{let b=document.createElement("button");b.className="option";b.textContent=`${String.fromCharCode(65+i)}. ${txt}`;b.onclick=()=>answer(i,b);$("options").appendChild(b)});renderTimer();
 }
-next.onclick=()=>{
-  if(current<questions.length-1){current++;loadQuestion();}
-  else showResults();
-};
-function showResults(){
-  document.getElementById("quizCard").classList.add("hidden");
-  document.getElementById("resultCard").classList.remove("hidden");
-  const pct=Math.round(score/questions.length*100);
-  document.getElementById("finalScore").textContent=`${score}/${questions.length}`;
-  document.getElementById("percentage").textContent=`You scored ${pct}%`;
-  let msg=pct>=90?"🏆 Excellent! You really understand dictionary comprehensions."
-    :pct>=70?"👏 Great job! Keep practicing."
-    :pct>=50?"👍 Good start! Review the concepts and try again."
-    :"📚 Keep practicing—you'll improve quickly!";
-  document.getElementById("finalMessage").textContent=msg;
-  const review=document.getElementById("review");
-  review.innerHTML="<h3>Answer Review</h3>";
-  questions.forEach((q,i)=>{
-    const div=document.createElement("div");
-    div.className="review-item";
-    const ok=userAnswers[i]===q.a;
-    div.innerHTML=`${ok?"✅":"❌"} <b>Q${i+1}:</b> ${q.q}<br><span class="small">Correct: ${q.o[q.a]}</span>`;
-    review.appendChild(div);
-  });
+function answer(i,clicked){
+ if(answered)return;answered=true;const q=pool[current];document.querySelectorAll(".option").forEach((b,n)=>{b.disabled=true;if(n===q.a)b.classList.add("correct")});
+ if(i===q.a){score++;$("feedback").textContent="🔊 Correct! "+q.e;beep(true)}else{clicked.classList.add("wrong");$("feedback").textContent="❌ Incorrect. "+q.e;beep(false)}
+ $("liveScore").textContent=`Score: ${score}`;$("nextBtn").style.display="block";
 }
-function restartQuiz(){
-  current=0;score=0;answered=false;userAnswers=[];
-  document.getElementById("resultCard").classList.add("hidden");
-  document.getElementById("quizCard").classList.remove("hidden");
-  loadQuestion();
+$("nextBtn").onclick=()=>{if(current<pool.length-1){current++;load()}else finish(false)};
+function finish(timeout){
+ clearInterval(timerId);if(timeout){$("feedback").textContent="⏰ Time is up!"}
+ $("quiz").classList.add("hidden");$("result").classList.remove("hidden");$("leaderboard").classList.remove("hidden");
+ const used=Math.floor((Date.now()-startTime)/1000),pct=Math.round(score/pool.length*100);$("finalScore").textContent=`${score}/${pool.length}`;$("pct").textContent=pct+"%";$("correctCount").textContent=score;$("timeUsed").textContent=format(used);
+ $("message").textContent=pct>=90?"Outstanding! 🏆":pct>=75?"Excellent work! 🎉":pct>=60?"Good job—keep practicing! 👍":"Keep learning and try again! 📚";
+ saveBoard(pct);renderBoard();
 }
-loadQuestion();
+function saveBoard(pct){let b=JSON.parse(localStorage.getItem("pyDictQuizBoard")||"[]");b.push({name:player,score:score,accuracy:pct,level:level,date:new Date().toLocaleDateString()});b.sort((a,b)=>b.score-a.score||b.accuracy-a.accuracy);localStorage.setItem("pyDictQuizBoard",JSON.stringify(b.slice(0,10)))}
+function renderBoard(){let b=JSON.parse(localStorage.getItem("pyDictQuizBoard")||"[]");$("boardBody").innerHTML=b.map((x,i)=>`<tr><td>${i+1}</td><td>${escapeHtml(x.name)}</td><td>${x.score}/50</td><td>${x.accuracy}%</td><td>${x.level}</td><td>${x.date}</td></tr>`).join("")||"<tr><td colspan=6>No scores yet.</td></tr>"}
+$("clearBoard").onclick=()=>{if(confirm("Clear the local leaderboard?")){localStorage.removeItem("pyDictQuizBoard");renderBoard()}}
+$("restartBtn").onclick=()=>{$("result").classList.add("hidden");$("leaderboard").classList.add("hidden");$("setup").classList.remove("hidden")};
+$("certBtn").onclick=()=>{let pct=Math.round(score/pool.length*100);$("certName").textContent=player;$("certScore").textContent=`Score: ${score}/${pool.length} • ${pct}%`;$("certLevel").textContent=`Level: ${level==="mixed"?"Mixed Challenge":level[0].toUpperCase()+level.slice(1)}`;$("certDate").textContent=new Date().toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"});$("result").classList.add("hidden");$("leaderboard").classList.add("hidden");$("certificateCard").classList.remove("hidden")};
+$("backResult").onclick=()=>{$("certificateCard").classList.add("hidden");$("result").classList.remove("hidden");$("leaderboard").classList.remove("hidden")};
+function shuffle(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function format(s){return `${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+function beep(ok){try{let c=new (window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.frequency.value=ok?740:220;o.connect(g);g.connect(c.destination);g.gain.setValueAtTime(.05,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.16);o.start();o.stop(c.currentTime+.16)}catch(e){}}
+renderBoard();
 </script>
 </body>
 </html>
